@@ -1,0 +1,10 @@
+{
+  "name": "Bet365s",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "http-server www/"
+  },
+  "dependencies": {
+  }
+}
