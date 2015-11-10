@@ -23,7 +23,7 @@
     </p>
     <h3>Stats
     </h3>
-    <div class="stats">
+    <div id="stats" class="stats">
       <table>
         <thead>
           <tr>
@@ -36,97 +36,19 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>GOOG</th>
-            <td>Google Inc</span></td>
-            <td class="number"><span>658.89</span></td>
-            <td class="number"><span>-2.01</span></td>
-            <td class="number"><span>-0.30%</span></td>
-            <td class="number"><span>460.74B</span></td>
-          </tr>
-          <tr>
-            <th>BIDU</th>
-            <td>Baidu Inc (ADR)</span></td>
-            <td class="number"><span>160.19</span></td>
-            <td class="number"><span>-2.70</span></td>
-            <td class="number"><span>-1.66%</span></td>
-            <td class="number"><span>56.49B</span></td>
-          </tr>
-          <tr>
-            <th>YNDX</th>
-            <td>Yandex NV</span></td>
-            <td class="number"><span>11.80</span></td>
-            <td class="number"><span>-0.11</span></td>
-            <td class="number"><span>-0.92%</span></td>
-            <td class="number"><span>3.75B</span></td>
-          </tr>
-          <tr>
-            <th>BCOR</th>
-            <td>Blucora Inc</span></td>
-            <td class="number"><span>13.43</span></td>
-            <td class="number"><span>-0.12</span></td>
-            <td class="number"><span>-0.89%</span></td>
-            <td class="number"><span>557.51M</span></td>
-          </tr>
-          <tr>
-            <th>YHOO</th>
-            <td>Yahoo! Inc.</th>
-            <td class="number"><span>34.79</th>
-            <td class="number"><span>-0.40</th>
-            <td class="number"><span>-1.14%</th>
-            <td class="number"><span>32.76B</th>
-          </tr>
-          <tr>
-            <th>MSFT</th>
-            <td>Microsoft Corp</th>
-            <td class="number"><span>46.17</th>
-            <td class="number"><span>-0.44</th>
-            <td class="number"><span>-0.93%</th>
-            <td class="number"><span>369.67B</th>
-          </tr>
-          <tr>
-            <th>IACI</th>
-            <td>IAC/InterActiveCorp</span></td>
-            <td class="number"><span>73.17</span></td>
-            <td class="number"><span>-0.44</span></td>
-            <td class="number"><span>-0.60%</span></td>
-            <td class="number"><span>6.09B</span></td>
-          </tr>
-          <tr>
-            <th>FB</th>
-            <td>Facebook Inc</span></td>
-            <td class="number"><span>94.20</span></td>
-            <td class="number"><span>-1.11</span></td>
-            <td class="number"><span>-1.16%</span></td>
-            <td class="number"><span>264.27B</span></td>
-          </tr>
-          <tr>
-            <th>AAPL</th>
-            <td>Apple Inc.</span></td>
-            <td class="number"><span>113.76</span></td>
-            <td class="number"><span>-1.25</span></td>
-            <td class="number"><span>-1.09%</span></td>
-            <td class="number"><span>649.88B</span></td>
-          </tr>
-          <tr>
-            <th>TWTR</th>
-            <td>Twitter Inc</span></td>
-            <td class="number"><span>27.19</span></td>
-            <td class="number"><span>-0.42</span></td>
-            <td class="number"><span>-1.52%</span></td>
-            <td class="number"><span>18.35B</span></td>
-          </tr>
-          <tr>
-            <th>{{Name}}</th>
-            <td>{{Company Name}}</span></td>
-            <td class="number"><span>{{Price}}</span></td>
-            <td class="number"><span>{{Change}}</span></td>
-            <td class="number"><span>{{Change %}}</span></td>
-            <td class="number"><span>{{Mkt Cap}}</span></td>
+          <tr id="ROW_{{Name}}">
+            <th class="name">{{Name}}</th>
+            <td class="companyName">{{Company Name}}</span></td>
+            <td class="number price"><span>{{Price}}</span></td>
+            <td class="number change"><span>{{Change}}</span></td>
+            <td class="number changePercent"><span>{{Change %}}</span></td>
+            <td class="number marketCap"><span>{{Mkt Cap}}</span></td>
           </tr>
         </tbody>
       </table>
-      <button id="refreshButton">Animate</button>
+      <button type="button" id="refreshButton">Animate</button>
+      <button type="button" id="startButton" disabled>Start</button>
+      <button type="button" id="stopButton" disabled>Stop</button>
     </div>
     <h3>Graph</h3>
   </div>
@@ -174,7 +96,7 @@
     }
 
     function toggleAnim() {
-      var cells = document.querySelectorAll(".stats td span");
+      var cells = document.querySelectorAll("#stats td span");
       for (var i=0,j=cells.length;i<j;i++) {
         var cell = cells[i];
         replaceCell(cell, cell.innerText.split("").reverse().join(""));
@@ -182,16 +104,68 @@
     }
 
     window.onload = function() {
-      // animation
-      var items = document.querySelectorAll(".stats td span");
-      for (var i=0,j=items.length;i<j;i++) {
-        items[i].addEventListener("animationend", listenForAnimEnd, false);
-      }
       // refreshButton.click event
       document.getElementById("refreshButton").onclick = toggleAnim;
 
       console.log("resources loading...");
-      ticker.initialise(function() {
+      ticker.initialise(function(engine) {
+
+        var tbody = document.querySelector("#stats tbody");
+        var tableHtml = "";
+        var template = tbody.innerHTML;
+        for (var i=0,j=engine.snapshots.length;i<j;i++) {
+          var snapshot = engine.snapshots[i];
+          tableHtml += template
+            .replace("{{Name}}", snapshot.name)
+            .replace("{{Name}}", snapshot.name)
+            .replace("{{Company Name}}", snapshot.companyName)
+            .replace("{{Price}}", snapshot.price)
+            .replace("{{Change}}", snapshot.change)
+            .replace("{{Change %}}", snapshot.changePercent)
+            .replace("{{Mkt Cap}}", snapshot.marketCap);
+        }
+        tbody.innerHTML = tableHtml;
+
+        // animation
+        var items = document.querySelectorAll("#stats td span");
+        for (var i=0,j=items.length;i<j;i++) {
+          items[i].addEventListener("animationend", listenForAnimEnd, false);
+        }
+
+        var startButton = document.getElementById("startButton");
+        var stopButton = document.getElementById("stopButton");
+
+        engine.onchange = function(s, changes) {
+          console.log(s.name, changes);
+          for (var i=0,j=changes.length;i<j;i++) {
+            var e = document.querySelector("#ROW_" + s.name + " ." + changes[i] + " span");
+            replaceCell(e, s[changes[i]]);
+          }
+        };
+
+        engine.onstart = function(e) {
+          console.log("onstart");
+          startButton.setAttribute("disabled", "");
+          stopButton.removeAttribute("disabled");
+        }
+
+        engine.onstop = function(e) {
+          console.log("onstop");
+          startButton.removeAttribute("disabled");
+          stopButton.setAttribute("disabled", "");
+        }
+
+        startButton.onclick = function(e) {
+          e.target.setAttribute("disabled", "");
+          engine.start();
+        }
+
+        stopButton.onclick = function(e) {
+          e.target.setAttribute("disabled", "");
+          engine.stop();
+        };
+
+        engine.start();
         console.log("resources loaded....");
       });
     };
