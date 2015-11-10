@@ -126,7 +126,7 @@
           </tr>
         </tbody>
       </table>
-      <button onclick="toggleAnim()">Animate</button>
+      <button id="refreshButton">Animate</button>
     </div>
     <h3>Graph</h3>
   </div>
@@ -136,51 +136,68 @@
   </div>
   -->
 </div>
+<script type="text/javascript" src="ticker.js"></script>
 <script type="text/javascript">
-  function addClass(e, c) {
-    removeClass(e, c);
-    e.className = (e.className + " " + c).trim();
-  }
+  (function() {
+    "use strict";
 
-  function removeClass(e, c) {
-    if (typeof e.className === "undefined") return;
-    var classes = e.className.split(" ");
-    var r = [];
-    for (var i=0,j=classes.length;i<j;i++)
-      if (classes[i] !== c)
-        r.push(classes[i])
-    e.className = r.join(" ");
-  }
-
-  function replaceCell(e, s) {
-    addClass(e, "animOut");
-    e["data-text"] = s;
-  }
-
-  function listenForAnimEnd(anim) {
-    var e = anim.target;
-    if (anim.animationName === "flipOutX") {
-      e.innerText = e["data-text"];
-      delete e["data-text"];
-      removeClass(e, "animOut");
-      addClass(e, "animIn");
-    } else {
-      removeClass(e, "animIn");
+    function addClass(e, c) {
+      removeClass(e, c);
+      e.className = (e.className + " " + c).trim();
     }
-  }
 
-  function toggleAnim() {
-    var cells = document.querySelectorAll(".stats td span");
-    for (var i=0,j=cells.length;i<j;i++) {
-      var cell = cells[i];
-      replaceCell(cell, cell.innerText.split("").reverse().join(""));
+    function removeClass(e, c) {
+      if (typeof e.className === "undefined") return;
+      var classes = e.className.split(" ");
+      var r = [];
+      for (var i=0,j=classes.length;i<j;i++)
+        if (classes[i] !== c)
+          r.push(classes[i])
+      e.className = r.join(" ");
     }
-  }
 
-  var items = document.querySelectorAll(".stats td span");
-  for (var i=0,j=items.length;i<j;i++) {
-    items[i].addEventListener("animationend", listenForAnimEnd, false);
-  }
+    function replaceCell(e, s) {
+      addClass(e, "animOut");
+      e.setAttribute("data-text", s);
+    }
+
+    function listenForAnimEnd(anim) {
+      var e = anim.target;
+      if (anim.animationName === "flipOutX") {
+        e.innerText = e.getAttribute("data-text");
+        e.removeAttribute("data-text");
+        removeClass(e, "animOut");
+        addClass(e, "animIn");
+      } else {
+        removeClass(e, "animIn");
+      }
+    }
+
+    function toggleAnim() {
+      var cells = document.querySelectorAll(".stats td span");
+      for (var i=0,j=cells.length;i<j;i++) {
+        var cell = cells[i];
+        replaceCell(cell, cell.innerText.split("").reverse().join(""));
+      }
+    }
+
+    window.onload = function() {
+      // animation
+      var items = document.querySelectorAll(".stats td span");
+      for (var i=0,j=items.length;i<j;i++) {
+        items[i].addEventListener("animationend", listenForAnimEnd, false);
+      }
+      // refreshButton.click event
+      document.getElementById("refreshButton").onclick = toggleAnim;
+
+      console.log("resources loading...");
+      ticker.initialise(function() {
+        console.log("resources loaded....");
+      });
+    };
+
+  })();
+
 </script>
 </body>
 </html>
