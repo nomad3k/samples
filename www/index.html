@@ -46,7 +46,6 @@
           </tr>
         </tbody>
       </table>
-      <button type="button" id="refreshButton">Animate</button>
       <button type="button" id="startButton" disabled>Start</button>
       <button type="button" id="stopButton" disabled>Stop</button>
     </div>
@@ -95,17 +94,7 @@
       }
     }
 
-    function toggleAnim() {
-      var cells = document.querySelectorAll("#stats td span");
-      for (var i=0,j=cells.length;i<j;i++) {
-        var cell = cells[i];
-        replaceCell(cell, cell.innerText.split("").reverse().join(""));
-      }
-    }
-
     window.onload = function() {
-      // refreshButton.click event
-      document.getElementById("refreshButton").onclick = toggleAnim;
 
       console.log("resources loading...");
       ticker.initialise(function(engine) {

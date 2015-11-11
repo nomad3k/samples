@@ -29,24 +29,13 @@ var ticker = {};
 
   Snapshot.prototype.merge = function(args) {
     var changes = [];
-    var marketCap = null;
-    if (args.price !== null && args.price !== this.price) {
-      if (this.marketCap < this.price)
-        marketCap = this.price;
-      this.price = args.price;
-      changes.push("price");
-    }
-    if (args.change !== null && args.change !== this.change) {
-      this.change = args.change;
-      changes.push("change");
-    }
-    if (args.changePercent != null && args.changePercent !== this.changePercent) {
-      this.changePercent = args.changePercent;
-      changes.push("changePercent");
-    }
-    if (marketCap !== null && marketCap !== this.marketCap) {
-      this.marketCap = marketCap;
-      changes.push("marketCap");
+    var attrs = ["price", "change", "changePercent"];
+    for (var i=0,j=attrs.length;i<j;i++) {
+      var a = attrs[i];
+      if (args[a] !== null && args[a] !== this[a]) {
+        this[a] = args[a];
+        changes.push(a);
+      }
     }
     return changes;
   }
@@ -71,7 +60,7 @@ var ticker = {};
       parseNumber(cells[2].trim()),
       parseNumber(cells[3].trim()),
       parseNumber(cells[4].trim()),
-      parseNumber(cells[5].trim())
+      cells[5]
     );
   }
 
