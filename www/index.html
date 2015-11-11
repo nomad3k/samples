@@ -27,22 +27,22 @@
       <table>
         <thead>
           <tr>
-            <th class="name">Name</th>
-            <th>Company Name</th>
-            <th class="number">Price</th>
-            <th class="number">Change</th>
-            <th class="number">Chg %</th>
-            <th class="number">Mkt Cap</th>
+            <th class="stats__column--header stats__column--name name">Name</th>
+            <th class="stats__column--header">Company Name</th>
+            <th class="stats__column--header stats__column--number">Price</th>
+            <th class="stats__column--header stats__column--number">Change</th>
+            <th class="stats__column--header stats__column--number">Chg %</th>
+            <th class="stats__column--header stats__column--number">Mkt Cap</th>
           </tr>
         </thead>
         <tbody>
           <tr id="ROW_{{Name}}">
-            <th class="name">{{Name}}</th>
-            <td class="companyName">{{Company Name}}</span></td>
-            <td class="number price"><span>{{Price}}</span></td>
-            <td class="number change"><span>{{Change}}</span></td>
-            <td class="number changePercent"><span>{{Change %}}</span></td>
-            <td class="number marketCap"><span>{{Mkt Cap}}</span></td>
+            <th class="stats__row--header stats__column--name name">{{Name}}</th>
+            <td class="stats__cell companyName">{{Company Name}}</span></td>
+            <td class="stats__cell stats__column--number price"><span>{{Price}}</span></td>
+            <td class="stats__cell stats__column--number change"><span>{{Change}}</span></td>
+            <td class="stats__cell stats__column--number changePercent"><span>{{Change %}}</span></td>
+            <td class="stats__cell stats__column--number marketCap"><span>{{Mkt Cap}}</span></td>
           </tr>
         </tbody>
       </table>

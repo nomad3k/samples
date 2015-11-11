@@ -1,5 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+/***
+ * Default overrides
+ */
+
 html, body {
   font-family: 'Open Sans', arial, sans-serif;
   font-size: 16px;
@@ -12,6 +16,26 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+h1, h2, h3, h4, h5 {
+  color: #444444;
+}
+
+/***
+ * Simple shadow
+ */
+
+.shadow {
+  -webkit-box-shadow: 10px 0px 5px #aaaaaa;
+     -moz-box-shadow: 10px 0px 5px #aaaaaa;
+      -ms-box-shadow: 10px 0px 5px #aaaaaa;
+       -o-box-shadow: 10px 0px 5px #aaaaaa;
+          box-shadow: 10px 0px 5px #aaaaaa;
+}
+
+/***
+ * Layout
+ */
 
 .body {
   position: relative;
@@ -59,13 +83,9 @@ html, body {
   color: white;
 }
 
-h1, h2, h3, h4, h5 {
-  color: #444444;
-}
-
-.shadow {
-  box-shadow: 10px 0px 5px #aaaaaa;
-}
+/***
+ * Stats table
+ */
 
 .stats {
 
@@ -78,23 +98,29 @@ h1, h2, h3, h4, h5 {
 .stats > * {
   font-size: 0.75em;
 }
-.stats th {
+.stats__column--header,
+.stats__row--header {
   background-color: #2BAF2B;
   border: solid 1px #72D572;
   color: #ffffff;
 }
-.stats td {
+.stats__cell {
   background-color: #d0f8ce;
   border: solid 1px #A3E9A4;
 }
 
-.name {
+.stats__column--name {
   width: 96px;
 }
-.number {
+
+.stats__column--number {
   text-align: right;
   width: 96px;
 }
+
+/***
+ * Animations
+ */
 
 .animIn
 {
