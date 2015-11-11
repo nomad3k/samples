@@ -82,34 +82,55 @@
       }
     }
 
+    function attachAnimationListeners() {
+      var items = document.querySelectorAll("#stats td span");
+      for (var i=0,j=items.length;i<j;i++) {
+        items[i].addEventListener("animationend", animationHasEnded, false);
+      }
+    }
+
+    function initialiseGrid(tbody, snapshots) {
+      var tableHtml = "";
+      var template = tbody.innerHTML;
+      for (var i=0,j=snapshots.length;i<j;i++) {
+        var snapshot = snapshots[i];
+        tableHtml += template
+          .replace(/{{Name}}/g, snapshot.name)
+          .replace("{{Company Name}}", snapshot.companyName)
+          .replace("{{Price}}", snapshot.price)
+          .replace("{{Change}}", snapshot.change)
+          .replace("{{Change %}}", snapshot.changePercent)
+          .replace("{{Mkt Cap}}", snapshot.marketCap);
+      }
+      tbody.innerHTML = tableHtml;
+    }
+
     window.onload = function() {
 
       console.log("resources loading...");
       ticker.initialise(function(engine) {
 
-        var tbody = document.querySelector("#stats tbody");
-        var tableHtml = "";
-        var template = tbody.innerHTML;
-        for (var i=0,j=engine.snapshots.length;i<j;i++) {
-          var snapshot = engine.snapshots[i];
-          tableHtml += template
-            .replace(/{{Name}}/g, snapshot.name)
-            .replace("{{Company Name}}", snapshot.companyName)
-            .replace("{{Price}}", snapshot.price)
-            .replace("{{Change}}", snapshot.change)
-            .replace("{{Change %}}", snapshot.changePercent)
-            .replace("{{Mkt Cap}}", snapshot.marketCap);
-        }
-        tbody.innerHTML = tableHtml;
+        initialiseGrid(document.querySelector("#stats tbody"), engine.snapshots);
+        attachAnimationListeners();
 
-        // animation
-        var items = document.querySelectorAll("#stats td span");
-        for (var i=0,j=items.length;i<j;i++) {
-          items[i].addEventListener("animationend", animationHasEnded, false);
-        }
+        /***
+         * initialise buttons
+         */
 
         var startButton = document.getElementById("startButton");
         var stopButton = document.getElementById("stopButton");
+        startButton.onclick = function(e) {
+          e.target.setAttribute("disabled", "");
+          engine.start();
+        }
+        stopButton.onclick = function(e) {
+          e.target.setAttribute("disabled", "");
+          engine.stop();
+        };
+
+        /***
+         * attach events to ticketengine view model
+         */
 
         engine.onchange = function(s, changes) {
           window.requestAnimationFrame(function() {
@@ -132,18 +153,10 @@
           stopButton.setAttribute("disabled", "");
         }
 
-        startButton.onclick = function(e) {
-          e.target.setAttribute("disabled", "");
-          engine.start();
-        }
-
-        stopButton.onclick = function(e) {
-          e.target.setAttribute("disabled", "");
-          engine.stop();
-        };
-
+        /***
+         * Start the ticker running
+         */
         engine.start();
-        console.log("resources loaded....");
       });
     };
 
