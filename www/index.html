@@ -136,7 +136,7 @@
           window.requestAnimationFrame(function() {
             console.log(s.name, changes);
             for (var i=0,j=changes.length;i<j;i++) {
-              replaceCellValue(s.name, changes[i], s[changes[i]]);
+              replaceCellValue(s.name, changes[i], s[changes[i]].toFixed(2));
             }
           });
         };
