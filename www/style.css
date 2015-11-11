@@ -21,6 +21,23 @@ h1, h2, h3, h4, h5 {
   color: #444444;
 }
 
+.button {
+  background-color: #259B24;
+  border: solid 1px #0D5302;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.258824) 0px 2px 5px 0px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 14.4px;
+  margin: 6px;
+  padding: 6px;
+  position: relative;
+  width: 120px;
+}
+.button:disabled {
+  background-color: #0D5302;
+  color: #888888;
+}
 /***
  * Simple shadow
  */
@@ -116,6 +133,11 @@ h1, h2, h3, h4, h5 {
 .stats__column--number {
   text-align: right;
   width: 96px;
+}
+
+.stats__buttons {
+  padding-top: 8px;
+  text-align: right;
 }
 
 /***
