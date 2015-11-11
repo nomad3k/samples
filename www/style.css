@@ -88,8 +88,12 @@ h1, h2, h3, h4, h5 {
   border: solid 1px #A3E9A4;
 }
 
+.name {
+  width: 96px;
+}
 .number {
   text-align: right;
+  width: 96px;
 }
 
 .animIn
