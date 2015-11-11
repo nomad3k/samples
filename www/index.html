@@ -105,8 +105,7 @@
         for (var i=0,j=engine.snapshots.length;i<j;i++) {
           var snapshot = engine.snapshots[i];
           tableHtml += template
-            .replace("{{Name}}", snapshot.name)
-            .replace("{{Name}}", snapshot.name)
+            .replace(/{{Name}}/g, snapshot.name)
             .replace("{{Company Name}}", snapshot.companyName)
             .replace("{{Price}}", snapshot.price)
             .replace("{{Change}}", snapshot.change)
@@ -125,11 +124,13 @@
         var stopButton = document.getElementById("stopButton");
 
         engine.onchange = function(s, changes) {
-          console.log(s.name, changes);
-          for (var i=0,j=changes.length;i<j;i++) {
-            var e = document.querySelector("#ROW_" + s.name + " ." + changes[i] + " span");
-            replaceCell(e, s[changes[i]]);
-          }
+          window.requestAnimationFrame(function() {
+            console.log(s.name, changes);
+            for (var i=0,j=changes.length;i<j;i++) {
+              var e = document.querySelector("#ROW_" + s.name + " ." + changes[i] + " span");
+              replaceCell(e, s[changes[i]]);
+            }
+          });
         };
 
         engine.onstart = function(e) {

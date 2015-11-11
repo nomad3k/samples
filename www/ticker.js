@@ -109,6 +109,7 @@ var ticker = {};
       }
       this.tick();
     } else {
+      this.snapshotIndex = 0;
       console.log("sleep for " + delta + "...");
       var self = this;
       window.setTimeout(function() { self.tick(); }, delta);
