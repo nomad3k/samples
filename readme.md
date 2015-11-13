@@ -4,7 +4,7 @@ This repo contains a number of samples I was asked to provide for various interv
 
 ## dotnet-basic-adonet
 
-This is a simple project that implements user management, but without using any ORM.  The criteria was to use basic ADO.Net to show an understanding of databases & SQL.
+This is a simple project that implements user management in C#, but without using any ORM.  The criteria was to use basic ADO.Net to show an understanding of databases & SQL.
 
 ## native-javascript
 
