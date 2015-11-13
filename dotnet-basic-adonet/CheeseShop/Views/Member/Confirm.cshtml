@@ -1,0 +1,54 @@
+﻿@model CheeseShop.Controllers.ConfirmMemberModel
+
+@{
+    ViewBag.Title = "Confirm";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    Thankyou for registering with The Cheese Store.
+    You will need to verify your email address before your account becomes active.
+    Please check your emails.
+</p>
+
+<p><strong>Note:</strong> This should have created an email in the <code>c:\temp\cheeseshop\</code> directory.</p>
+
+@using (Html.BeginForm("Confirm", "Member", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(x => x.ShowEmail)
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <fieldset class="col-md-8 col-md-offset-2">
+            <legend>Confirmation Details</legend>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.Email, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @if (Model.ShowEmail)
+                    {
+                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autofocus = "" })
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(x => x.Email)
+                        @Html.DisplayFor(x => x.Email)
+                    }
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.ConfirmationCode, new {@class = "col-md-2 control-label"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(x => x.ConfirmationCode, new {autofocus = "", required = "", @class = "form-control"})
+                    @Html.ValidationMessageFor(x => x.ConfirmationCode, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary col-md-offset-2">Confirm &raquo;</button>
+            </div>
+        </fieldset>
+    </div>
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<buildInfo>
+  <projectName>CheeseShop</projectName>
+  <companyName>The Cheese Shop Ltd.</companyName>
+  <versionMajor>1</versionMajor>
+  <versionMinor>0</versionMinor>
+  <versionPatch>13</versionPatch>
+  <buildNumber>0</buildNumber>
+  <revision>0</revision>
+  <version>1.0.13.0</version>
+  <repositoryPath>git@sourceserver:CheeseShop.git</repositoryPath>
+  <microsoftNetFramework>net-4.0</microsoftNetFramework>
+  <msbuildConfiguration>Release</msbuildConfiguration>
+  <msbuildPlatform>Any CPU</msbuildPlatform>
+  <builtWith>UppercuT v. 1.4.2.0</builtWith>
+</buildInfo>

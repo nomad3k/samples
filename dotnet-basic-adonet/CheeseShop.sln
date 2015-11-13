@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseShop.Common", "CheeseShop.Common\CheeseShop.Common.csproj", "{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseShop.Common.Tests", "CheeseShop.Common.Tests\CheeseShop.Common.Tests.csproj", "{D184B1F7-5EE0-4BAA-B17E-60C9C8708848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseShop.Domain", "CheeseShop.Domain\CheeseShop.Domain.csproj", "{F71857C2-01EE-449A-8045-F683B44476F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseShop.Domain.Tests", "CheeseShop.Domain.Tests\CheeseShop.Domain.Tests.csproj", "{9C1C709B-B02C-4590-BA0D-062005BD2FE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseShop", "CheeseShop\CheeseShop.csproj", "{9DF951F6-786E-4C17-BEF1-822C42DB60BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{85BB63D2-6587-4CE4-A0DE-BFC8E09C629F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{A5E779A6-6AFA-4482-9276-230B1045CC27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20F8CE2A-4246-44B8-A366-D994FC8E92ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "A", "A", "{10F2DB75-D93B-4EA1-BB40-41D3C1E31366}"
+	ProjectSection(SolutionItems) = preProject
+		database\deployment\_BuildInfo.xml = database\deployment\_BuildInfo.xml
+		build.bat = build.bat
+		build.ps1 = build.ps1
+		build_utils.ps1 = build_utils.ps1
+		CommonInfo.cs = CommonInfo.cs
+		default.ps1 = default.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F3EBBBFB-10EB-49A3-BE1E-008B61CB1B37}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D184B1F7-5EE0-4BAA-B17E-60C9C8708848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D184B1F7-5EE0-4BAA-B17E-60C9C8708848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D184B1F7-5EE0-4BAA-B17E-60C9C8708848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D184B1F7-5EE0-4BAA-B17E-60C9C8708848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71857C2-01EE-449A-8045-F683B44476F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71857C2-01EE-449A-8045-F683B44476F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71857C2-01EE-449A-8045-F683B44476F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71857C2-01EE-449A-8045-F683B44476F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1C709B-B02C-4590-BA0D-062005BD2FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1C709B-B02C-4590-BA0D-062005BD2FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1C709B-B02C-4590-BA0D-062005BD2FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1C709B-B02C-4590-BA0D-062005BD2FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF951F6-786E-4C17-BEF1-822C42DB60BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF951F6-786E-4C17-BEF1-822C42DB60BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF951F6-786E-4C17-BEF1-822C42DB60BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF951F6-786E-4C17-BEF1-822C42DB60BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2A06B61-73D3-4212-B6DA-2E6DB0A0D7AF} = {A5E779A6-6AFA-4482-9276-230B1045CC27}
+		{D184B1F7-5EE0-4BAA-B17E-60C9C8708848} = {20F8CE2A-4246-44B8-A366-D994FC8E92ED}
+		{F71857C2-01EE-449A-8045-F683B44476F6} = {A5E779A6-6AFA-4482-9276-230B1045CC27}
+		{9C1C709B-B02C-4590-BA0D-062005BD2FE0} = {20F8CE2A-4246-44B8-A366-D994FC8E92ED}
+		{9DF951F6-786E-4C17-BEF1-822C42DB60BA} = {85BB63D2-6587-4CE4-A0DE-BFC8E09C629F}
+	EndGlobalSection
+EndGlobal

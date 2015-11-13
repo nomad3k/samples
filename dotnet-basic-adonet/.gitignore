@@ -1,0 +1,17 @@
+bin
+obj
+Release
+Debug
+Publish
+Output
+*.user
+*.suo
+*.bak
+_ReSharper.*
+PrecompiledWeb
+TestResults
+*.Publish.xml
+Artifacts
+Publish
+.sass-cache
+packages

@@ -1,0 +1,40 @@
+﻿@model CheeseShop.Domain.Events.NewMemberRegisteredEvent
+
+@{
+    var url = string.Format("http://localhost:50914/Member/Confirm?Email={0}&ConfirmationCode={1}",
+                            System.Web.HttpUtility.UrlEncode(Model.Email),
+                            Model.ConfirmationCode);
+}
+
+<style>
+    html, body, p, th, td, h1, h2, h3, h4, h5, ol, ul, li, a {
+	    color: #000;
+	    font-family: Calibri;
+	    font-size: 14px;
+    }
+    h1, h2, h3, h4, h5 {
+    	font-family: Century Gothic;
+        color: #8c8c8c;
+        border-bottom: 1px solid #a52a2a;
+    }
+    th  { text-align: right; }
+    a   { color: #a52a2a; }
+    h1	{ font-size: 3em; }
+    h2	{ font-size: 2em; }
+    h3	{ font-size: 1.5em; }
+    h4	{ font-size: 1.25em; }
+    h5	{ font-size: 1em; }
+</style>
+
+<h3>Welcome to The Cheese Shop @Model.Forename</h3>
+
+<p>
+    Thanks for registering with the #1 home of Cheese on the internet.
+    We can't Brielieve our luck that you've joined.
+    It was really Gouda you to do so.
+    Sorry, I Camembert any more cheese puns.
+</p>
+
+<p>
+    Confirmation Code: @Model.ConfirmationCode or click <a href="@url">here</a>.
+</p>
