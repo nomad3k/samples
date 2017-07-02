@@ -9,3 +9,9 @@ This is a simple project that implements user management in C#, but without usin
 ## native-javascript
 
 This is a sample project that downloads two CSV files and displays the results in the form of a ticker.  The criteria was to use native javascript with some animations.
+
+## sudoku-nodejs
+
+This is a simple Sudoku solver I wrote in about 30 minutes using
+nodejs, as an attempt to build a simple heuristic algorithm in
+node.
